@@ -16,8 +16,9 @@
 package com.example.android.explicitintent;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ChildActivity extends AppCompatActivity {
 
@@ -30,6 +31,6 @@ public class ChildActivity extends AppCompatActivity {
         setContentView(R.layout.activity_child);
 
         /* Typical usage of findViewById... */
-        mDisplayText = (TextView) findViewById(R.id.tv_display);
+        mDisplayText = findViewById(R.id.tv_display);
     }
 }
