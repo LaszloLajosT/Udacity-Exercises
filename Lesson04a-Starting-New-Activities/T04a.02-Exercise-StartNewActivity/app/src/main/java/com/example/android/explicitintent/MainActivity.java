@@ -17,7 +17,6 @@ package com.example.android.explicitintent;
 
 import android.content.Context;
 import android.os.Bundle;
-
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -42,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
          * do things like set the onClickListener which determines what happens when the button
          * is clicked.
          */
-        mDoSomethingCoolButton = (Button) findViewById(R.id.b_do_something_cool);
-        mNameEntry = (EditText) findViewById(R.id.et_text_entry);
+        mDoSomethingCoolButton = findViewById(R.id.b_do_something_cool);
+        mNameEntry = findViewById(R.id.et_text_entry);
 
         /* Setting an OnClickListener allows us to do something when this button is clicked. */
         mDoSomethingCoolButton.setOnClickListener(new OnClickListener() {
