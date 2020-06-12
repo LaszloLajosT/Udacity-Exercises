@@ -33,12 +33,43 @@ public class ChildActivity extends AppCompatActivity {
         /* Typical usage of findViewById... */
         mDisplayText = findViewById(R.id.tv_display);
 
-        // TODO (3) Use the getIntent method to store the Intent that started this Activity in a variable
+        // COMPLETED (3) Use the getIntent method to store the Intent that started this Activity in a variable
+        /*
+         * Here is where all the magic happens. The getIntent method will give us the Intent that
+         * started this particular Activity.
+         */
+        Bundle dataFromMainActivity = getIntent().getExtras();
+        String information;
+        /* b) solution:
+        Intent intentThatStartedThisActivity = getIntent();
+         */
 
-        // TODO (4) Create an if statement to check if this Intent has the extra we passed from MainActivity
+        // COMPLETED (4) Create an if statement to check if this Intent has the extra we passed from MainActivity
+        /*
+         * Although there is always an Intent that starts any particular Activity, we can't
+         * guarantee that the extra we are looking for was passed as well. Because of that, we need
+         * to check to see if the Intent has the extra that we specified when we created the
+         * Intent that we use to start this Activity. Note that this extra may not be present in
+         * the Intent if this Activity was started by any other method.
+         * */
+        if (dataFromMainActivity != null) {
+            // COMPLETED (5) If the Intent contains the correct extra, retrieve the text
+            information = dataFromMainActivity.getString("data");
+            // COMPLETED (6) If the Intent contains the correct extra, use it to set the TextView text
+            mDisplayText.setText(information);
+        }
 
-            // TODO (5) If the Intent contains the correct extra, retrieve the text
+        /* Or I can use b) solution   */
+        /*if (intentThatStartedThisActivity.hasExtra(Intent.EXTRA_TEXT)) {
+            // COMPLETED (5) If the Intent contains the correct extra, retrieve the text
+            String textEntered = intentThatStartedThisActivity.getStringExtra(Intent.EXTRA_TEXT);
 
-            // TODO (6) If the Intent contains the correct extra, use it to set the TextView text
+            // COMPLETED (6) If the Intent contains the correct extra, use it to set the TextView text
+            mDisplayText.setText(textEntered);
+        }
+
+         */
+
+
     }
 }
