@@ -18,11 +18,11 @@ package com.example.android.implicitintents;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ShareCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,10 +68,13 @@ public class MainActivity extends AppCompatActivity {
      * @param v Button that was clicked.
      */
     public void onClickShareTextButton(View v) {
-        // TODO (5) Specify a String you'd like to share
+        // COMPLETED (5) Specify a String you'd like to share
+        /* Create the String that you want to share */
+        String shareInformation = "I learn programming on Android.";
 
-        // TODO (6) Replace the Toast with shareText, passing in the String from step 5
-        Toast.makeText(this, "TODO: Share text when this is clicked", Toast.LENGTH_LONG).show();
+        // COMPLETED (6) Replace the Toast with shareText, passing in the String from step 5
+        /* Send that text to our method that will share it. */
+        shareText(shareInformation);
     }
 
     /**
@@ -145,12 +148,28 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // TODO (1) Create a void method called shareText that accepts a String as a parameter
+    // COMPLETED  (1) Create a void method called shareText that accepts a String as a parameter
     // Do steps 2 - 4 within the shareText method
 
-        // TODO (2) Create a String variable called mimeType and set it to "text/plain"
+    /**
+     *
+     * @param shareInformation Text that will be shared
+     */
+    public void shareText(String shareInformation) {
 
-        // TODO (3) Create a title for the chooser window that will pop up
+        // COMPLETED (2) Create a String variable called mimeType and set it to "text/plain"
+        String mimeType = "text/plain";
 
-        // TODO (4) Use ShareCompat.IntentBuilder to build the Intent and start the chooser
+        // COMPLETED (3) Create a title for the chooser window that will pop up
+        String title = "Learning how to share";
+
+        // COMPLETED (4) Use ShareCompat.IntentBuilder to build the Intent and start the chooser
+        Intent share = new Intent();
+        ShareCompat.IntentBuilder.from(this)
+                .setChooserTitle(title)
+                .setType(mimeType)
+                .setText(shareInformation)
+                .startChooser();
+
+    }
 }
