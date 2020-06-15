@@ -1,10 +1,11 @@
 package com.example.android.lifecycle;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,20 +48,68 @@ public class MainActivity extends AppCompatActivity {
 
         mLifecycleDisplay = (TextView) findViewById(R.id.tv_lifecycle_events_display);
 
-        // TODO (1) Use logAndAppend within onCreate
+        // COMPLETED  (1) Use logAndAppend within onCreate
+        logAndAppend(ON_CREATE);
     }
 
-    // TODO (2) Override onStart, call super.onStart, and call logAndAppend with ON_START
+    // COMPLETED  (2) Override onStart, call super.onStart, and call logAndAppend with ON_START
+    /**
+     * Called when the activity is becoming visible to the user.
+     *
+     * Followed by onResume() if the activity comes to the foreground, or onStop() if it becomes
+     * hidden.
+     */
+    @Override
+    protected void onStart() {
+        super.onStart();
+        logAndAppend(ON_START);
+    }
 
-    // TODO (3) Override onResume, call super.onResume, and call logAndAppend with ON_RESUME
+    // COMPLETED  (3) Override onResume, call super.onResume, and call logAndAppend with ON_RESUME
+    /**
+     * Called when the activity will start interacting with the user. At this point your activity
+     * is at the top of the activity stack, with user input going to it.
+     *
+     * Always followed by onPause().
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        logAndAppend(ON_RESUME);
+    }
 
-    // TODO (4) Override onPause, call super.onPause, and call logAndAppend with ON_PAUSE
+    // COMPLETED (4) Override onPause, call super.onPause, and call logAndAppend with ON_PAUSE
+    @Override
+    protected void onPause() {
+        super.onPause();
+        logAndAppend(ON_PAUSE);
+    }
 
-    // TODO (5) Override onStop, call super.onStop, and call logAndAppend with ON_STOP
+    // COMPLETED (5) Override onStop, call super.onStop, and call logAndAppend with ON_STOP
+    @Override
+    protected void onStop() {
+        super.onStop();
+        logAndAppend(ON_STOP);
+    }
 
-    // TODO (6) Override onRestart, call super.onRestart, and call logAndAppend with ON_RESTART
+    // COMPLETED (6) Override onRestart, call super.onRestart, and call logAndAppend with ON_RESTART
+    /**
+     * Called after your activity has been stopped, prior to it being started again.
+     *
+     * Always followed by onStart()
+     */
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        logAndAppend(ON_RESTART);
+    }
 
-    // TODO (7) Override onDestroy, call super.onDestroy, and call logAndAppend with ON_DESTROY
+    // COMPLETED (7) Override onDestroy, call super.onDestroy, and call logAndAppend with ON_DESTROY
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        logAndAppend(ON_DESTROY);
+    }
 
     /**
      * Logs to the console and appends the lifecycle method name to the TextView so that you can
