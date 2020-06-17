@@ -64,11 +64,14 @@ public class MainActivity extends AppCompatActivity {
          * to the contents of the TextView that displays our list of callbacks. If the bundle
          * contains that key, we set the contents of the TextView accordingly.
          */
-        if (savedInstanceState!=null && savedInstanceState.containsKey(LIFECYCLE_CALLBACKS_TEXT_KEY)) {
-            String allPreviousLifecycleCallbacks = savedInstanceState
-                    .getString(LIFECYCLE_CALLBACKS_TEXT_KEY);
-            mLifecycleDisplay.setText(allPreviousLifecycleCallbacks);
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey(LIFECYCLE_CALLBACKS_TEXT_KEY)) {
+                String allPreviousLifecycleCallbacks = savedInstanceState
+                        .getString(LIFECYCLE_CALLBACKS_TEXT_KEY);
+                mLifecycleDisplay.setText(allPreviousLifecycleCallbacks);
+            }
         }
+
         logAndAppend(ON_CREATE);
     }
 
@@ -141,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
         logAndAppend(ON_RESTART);
     }
-    
+
     /**
      * The final call you receive before your activity is destroyed. This can happen either because
      * the activity is finishing (someone called finish() on it, or because the system is
