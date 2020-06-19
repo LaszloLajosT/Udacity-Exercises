@@ -17,7 +17,7 @@ package com.example.android.asynctaskloader;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +29,8 @@ import com.example.android.asynctaskloader.utilities.NetworkUtils;
 
 import java.io.IOException;
 import java.net.URL;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 // TODO (1) implement LoaderManager.LoaderCallbacks<String> on MainActivity
 public class MainActivity extends AppCompatActivity {
