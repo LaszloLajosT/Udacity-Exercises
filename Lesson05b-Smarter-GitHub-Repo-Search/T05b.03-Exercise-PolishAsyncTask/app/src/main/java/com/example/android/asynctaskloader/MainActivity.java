@@ -16,10 +16,6 @@
 package com.example.android.asynctaskloader;
 
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,6 +28,11 @@ import com.example.android.asynctaskloader.utilities.NetworkUtils;
 
 import java.io.IOException;
 import java.net.URL;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.AsyncTaskLoader;
+import androidx.loader.content.Loader;
 
 public class MainActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<String> {
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements
         /*
          * Initialize the loader
          */
-        getSupportLoaderManager().initLoader(GITHUB_SEARCH_LOADER, null, this);
+        LoaderManager.getInstance(this).initLoader(GITHUB_SEARCH_LOADER, null, this);
     }
 
     /**
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements
          * was the simplest.
          */
         if (TextUtils.isEmpty(githubQuery)) {
-            mUrlDisplayTextView.setText("No query entered, nothing to search for.");
+            mUrlDisplayTextView.setText(R.string.nothing_to_search_for);
             return;
         }
 
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements
          * one doesn't exist, we tell the LoaderManager to create one. If one does exist, we tell
          * the LoaderManager to restart it.
          */
-        LoaderManager loaderManager = getSupportLoaderManager();
+        LoaderManager loaderManager =  LoaderManager.getInstance(this);
         Loader<String> githubSearchLoader = loaderManager.getLoader(GITHUB_SEARCH_LOADER);
         if (githubSearchLoader == null) {
             loaderManager.initLoader(GITHUB_SEARCH_LOADER, queryBundle, this);
@@ -165,7 +166,9 @@ public class MainActivity extends AppCompatActivity implements
     public Loader<String> onCreateLoader(int id, final Bundle args) {
         return new AsyncTaskLoader<String>(this) {
 
-            // TODO (1) Create a String member variable called mGithubJson that will store the raw JSON
+            // COMPLETED (1) Create a String member variable called mGithubJson that will store the raw JSON
+            /* This String will contain the raw JSON from the results of our GitHub search */
+            String mGithubJson;
 
             @Override
             protected void onStartLoading() {
@@ -175,15 +178,23 @@ public class MainActivity extends AppCompatActivity implements
                     return;
                 }
 
-                // TODO (2) If mGithubJson is not null, deliver that result. Otherwise, force a load
-
+                // COMPLETED (2) If mGithubJson is not null, deliver that result. Otherwise, force a load
                 /*
-                 * When we initially begin loading in the background, we want to display the
-                 * loading indicator to the user
+                 * If we already have cached results, just deliver them now. If we don't have any
+                 * cached results, force a load.
                  */
-                mLoadingIndicator.setVisibility(View.VISIBLE);
+                if (mGithubJson!= null){
+                    deliverResult(mGithubJson);
+                } else {
 
-                forceLoad();
+                    /*
+                     * When we initially begin loading in the background, we want to display the
+                     * loading indicator to the user
+                     */
+                    mLoadingIndicator.setVisibility(View.VISIBLE);
+
+                    forceLoad();
+                }
             }
 
             @Override
@@ -208,8 +219,15 @@ public class MainActivity extends AppCompatActivity implements
                 }
             }
 
-            // TODO (3) Override deliverResult and store the data in mGithubJson
-            // TODO (4) Call super.deliverResult after storing the data
+            // COMPLETED (3) Override deliverResult and store the data in mGithubJson
+            // COMPLETED (4) Call super.deliverResult after storing the data
+            @Override
+            public void deliverResult(String githubJson) {
+                mGithubJson = githubJson;
+                super.deliverResult(githubJson);
+            }
+
+
         };
     }
 
