@@ -14,5 +14,5 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         // Add visualizer preferences, defined in the XML file in res->xml->pref_visualizer
         addPreferencesFromResource(R.xml.pref_visualizer);
     }
-    
+
 }
