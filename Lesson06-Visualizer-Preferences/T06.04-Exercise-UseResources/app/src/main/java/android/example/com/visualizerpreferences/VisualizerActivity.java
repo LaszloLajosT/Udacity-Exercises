@@ -24,14 +24,15 @@ import android.example.com.visualizerpreferences.AudioVisuals.AudioInputReader;
 import android.example.com.visualizerpreferences.AudioVisuals.VisualizerView;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.preference.PreferenceManager;
 
 public class VisualizerActivity extends AppCompatActivity {
 
@@ -51,8 +52,9 @@ public class VisualizerActivity extends AppCompatActivity {
     private void setupSharedPreferences() {
         // Get all of the values from shared preferences to set it up
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        // TODO (4) Use resources here instead of the hard coded string and boolean
-        mVisualizerView.setShowBass(sharedPreferences.getBoolean("show_bass", true));
+        // COMPLETED (4) Use resources here instead of the hard coded string and boolean
+        mVisualizerView.setShowBass(sharedPreferences.getBoolean(getString(R.string.pref_show_bass_key),
+                getResources().getBoolean(R.bool.pref_show_bass_default)));
         mVisualizerView.setShowMid(true);
         mVisualizerView.setShowTreble(true);
         mVisualizerView.setMinSizeScale(1);
@@ -127,7 +129,7 @@ public class VisualizerActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[], @NonNull int[] grantResults) {
+                                           @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSION_RECORD_AUDIO_REQUEST_CODE: {
                 // If request is cancelled, the result arrays are empty.
