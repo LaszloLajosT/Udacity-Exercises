@@ -22,10 +22,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.SystemClock;
-import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.view.View;
 
+import androidx.annotation.ColorInt;
 import androidx.core.content.ContextCompat;
 
 
