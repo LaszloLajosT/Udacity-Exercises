@@ -19,9 +19,11 @@ package android.example.com.visualizerpreferences.AudioVisuals;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.support.annotation.ColorInt;
+
 
 import java.util.LinkedList;
+
+import androidx.annotation.ColorInt;
 
 /**
  * Abstract class representing a shape and a trail for where it's been
