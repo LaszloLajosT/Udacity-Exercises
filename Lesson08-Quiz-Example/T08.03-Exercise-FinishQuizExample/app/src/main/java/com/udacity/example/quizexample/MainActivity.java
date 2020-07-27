@@ -20,11 +20,14 @@ import android.content.ContentResolver;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.udacity.example.droidtermsprovider.DroidTermsExampleContract;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Gets the data from the ContentProvider and shows a series of flash cards.
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Get the views
         // TODO (1) You'll probably want more than just the Button
-        mButton = (Button) findViewById(R.id.button_next);
+        mButton = findViewById(R.id.button_next);
 
         //Run the database operation to get the cursor off of the main thread
         new WordFetchTask().execute();
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This is called from the layout when the button is clicked and switches between the
      * two app states.
+     *
      * @param view The view that was clicked
      */
     public void onButtonClick(View view) {
@@ -138,7 +142,16 @@ public class MainActivity extends AppCompatActivity {
 
             // TODO (2) Initialize anything that you need the cursor for, such as setting up
             // the screen with the first word and setting any other instance variables
+
+            int wordCol = cursor.getColumnIndex(DroidTermsExampleContract.COLUMN_WORD);
+            int definitionCol = cursor.getColumnIndex(DroidTermsExampleContract.COLUMN_DEFINITION);
+            while (cursor.moveToNext()) {
+                String word = cursor.getString(wordCol);
+                String definition = cursor.getString(definitionCol);
+                Log.v("Cursor Example", word + " - " + definition);
+            }
         }
     }
-
 }
+
+
