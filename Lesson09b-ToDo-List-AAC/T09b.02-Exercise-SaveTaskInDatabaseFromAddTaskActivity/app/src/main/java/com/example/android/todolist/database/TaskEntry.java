@@ -1,6 +1,8 @@
 package com.example.android.todolist.database;
 
 import java.util.Date;
+
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -12,7 +14,8 @@ public class TaskEntry {
     private int id;
     private String description;
     private int priority;
-    // TODO (1) Make updatedAt match a column named updated_at. Tip: Use the ColumnInfo annotation
+    // COMPLETED (1) Make updatedAt match a column named updated_at. Tip: Use the ColumnInfo annotation
+    @ColumnInfo( name = "updated_at")
     private Date updatedAt;
 
     @Ignore
