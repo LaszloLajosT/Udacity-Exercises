@@ -28,7 +28,8 @@ dependencies {
     // Add FAB dependency
     implementation 'com.google.android.material:material:1.1.0'
 
-    // TODO (1) Add Room dependencies
+    // COMPLETED (1) Add Room dependencies
+    implementation "androidx.room:room-runtime:2.2.5"
 
     // Testing
     // Instrumentation dependencies use androidTestImplementation
