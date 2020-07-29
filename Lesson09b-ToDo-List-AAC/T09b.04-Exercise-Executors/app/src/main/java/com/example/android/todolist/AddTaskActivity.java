@@ -18,7 +18,7 @@ package com.example.android.todolist;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -115,13 +115,19 @@ public class AddTaskActivity extends AppCompatActivity {
         int priority = getPriorityFromViews();
         Date date = new Date();
 
-        // TODO (4) Make taskEntry final so it is visible inside the run method
-        TaskEntry taskEntry = new TaskEntry(description, priority, date);
-        // TODO (2) Get the diskIO Executor from the instance of AppExecutors and
+        // COMPLETED (4) Make taskEntry final so it is visible inside the run method
+        final TaskEntry taskEntry = new TaskEntry(description, priority, date);
+        // COMPLETED (2) Get the diskIO Executor from the instance of AppExecutors and
         // call the diskIO execute method with a new Runnable and implement its run method
-        // TODO (3) Move the remaining logic inside the run method
-        mDb.taskDao().insertTask(taskEntry);
-        finish();
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                mDb.taskDao().insertTask(taskEntry);
+                finish();
+            }
+        });
+        // COMPLETED (3) Move the remaining logic inside the run method
+
     }
 
     /**

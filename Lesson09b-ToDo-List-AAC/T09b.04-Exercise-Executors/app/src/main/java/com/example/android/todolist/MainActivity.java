@@ -18,17 +18,21 @@ package com.example.android.todolist;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+
+import com.example.android.todolist.database.TaskEntry;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import android.view.View;
 
 import com.example.android.todolist.database.AppDatabase;
 
-import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
+import java.util.List;
+
+import static androidx.recyclerview.widget.DividerItemDecoration.VERTICAL;
 
 
 public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemClickListener {
@@ -105,13 +109,26 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
     @Override
     protected void onResume() {
         super.onResume();
-        // TODO (5) Get the diskIO Executor from the instance of AppExecutors and
+        //  COMPLETED (5) Get the diskIO Executor from the ins tance of AppExecutors and
         // call the diskIO execute method with a new Runnable and implement its run method
+        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                final List<TaskEntry> tasks = mDb.taskDao().loadAllTasks();
+                // We will be able to simplify this once we learn more
+                // about Android Architecture Components
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAdapter.setTasks(tasks);
+                    }
+                });
+            }
+        });
 
-        // TODO (6) Move the logic into the run method and
+        // COMPLETED (6) Move the logic into the run method and
         // extract the list of tasks to a final variable
-        // TODO (7) Wrap the setTask call in a call to runOnUiThread
-        mAdapter.setTasks(mDb.taskDao().loadAllTasks());
+        // COMPLETED (7) Wrap the setTask call in a call to runOnUiThread
     }
 
     @Override
