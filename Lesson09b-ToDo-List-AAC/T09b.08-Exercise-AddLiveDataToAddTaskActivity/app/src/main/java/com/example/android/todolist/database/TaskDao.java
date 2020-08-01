@@ -1,14 +1,13 @@
 package com.example.android.todolist.database;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.OnConflictStrategy;
-import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Update;
-
 import java.util.List;
+import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
+import androidx.room.Update;
 
 @Dao
 public interface TaskDao {
@@ -25,7 +24,7 @@ public interface TaskDao {
     @Delete
     void deleteTask(TaskEntry taskEntry);
 
-    // TODO (1) Wrap the return type with LiveData
+    // COMPLETED (1) Wrap the return type with LiveData
     @Query("SELECT * FROM task WHERE id = :id")
-    TaskEntry loadTaskById(int id);
+    LiveData<TaskEntry> loadTaskById(int id);
 }
