@@ -18,16 +18,14 @@ package com.example.android.todolist;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-
 import com.example.android.todolist.database.AppDatabase;
 import com.example.android.todolist.database.TaskEntry;
-
 import java.util.Date;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class AddTaskActivity extends AppCompatActivity {
