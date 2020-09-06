@@ -19,7 +19,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,6 +28,8 @@ import com.example.android.background.sync.ReminderTasks;
 import com.example.android.background.sync.WaterReminderIntentService;
 import com.example.android.background.utilities.NotificationUtils;
 import com.example.android.background.utilities.PreferenceUtilities;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener {
