@@ -20,5 +20,6 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    // TODO (1) Add gradle dependency for Firebase Job Dispatcher
+    // COMPLETED (1) Add gradle dependency for Firebase Job Dispatcher
+    compile 'com.firebase:firebase-jobdispatcher:0.5.2'
 }
