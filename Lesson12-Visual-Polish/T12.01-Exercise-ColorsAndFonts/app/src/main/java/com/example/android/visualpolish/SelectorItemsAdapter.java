@@ -16,7 +16,6 @@
 package com.example.android.visualpolish;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +23,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * We couldn't come up with a good name for this class. Then, we realized
@@ -135,9 +136,9 @@ public class SelectorItemsAdapter extends RecyclerView.Adapter<SelectorItemsAdap
         public ArticleViewHolder(View itemView) {
             super(itemView);
 
-            icon = (ImageView) itemView.findViewById(R.id.personIcon);
-            firstName = (TextView) itemView.findViewById(R.id.firstName);
-            lastName = (TextView) itemView.findViewById(R.id.lastName);
+            icon = itemView.findViewById(R.id.personIcon);
+            firstName = itemView.findViewById(R.id.firstName);
+            lastName = itemView.findViewById(R.id.lastName);
 
             itemView.setOnClickListener(this);
         }
