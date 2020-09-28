@@ -1,10 +1,10 @@
 package com.example.android.visualpolish;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class SelectorsActivity extends AppCompatActivity
@@ -22,7 +22,7 @@ public class SelectorsActivity extends AppCompatActivity
         setContentView(R.layout.selectors_activity);
 
         // Reference the recycler view with a call to findViewById
-        mRecyclerView = (RecyclerView) findViewById(R.id.mainRecyclerView);
+        mRecyclerView = findViewById(R.id.mainRecyclerView);
 
         // The linear layout manager will position list items in a vertical list
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
