@@ -3,7 +3,6 @@ package com.example.android.visualpolish;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 public class StyleActivity extends AppCompatActivity {
 
     @Override
@@ -12,5 +11,4 @@ public class StyleActivity extends AppCompatActivity {
         setContentView(R.layout.style_activity);
 
     }
-
 }
